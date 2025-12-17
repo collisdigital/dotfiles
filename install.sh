@@ -1,3 +1,6 @@
+echo "Checking who we are..."
+whoami
+
 echo "Listing current directory..."
 ls -la .
 
@@ -11,4 +14,4 @@ if ! git config --global --get-all include.path | grep -q "$DOTFILES_GITCONFIG";
 fi
 
 echo "Installing Gemini CLI..."
-npm install -g @google/gemini-cli
+npm install @google/gemini-cli
