@@ -1,0 +1,43 @@
+# Subset from https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt
+
+[alias]
+# Short aliases for frequent commands.
+  a = add
+  b = branch
+  c = commit
+  d = diff
+  f = fetch
+  g = grep
+  l = log
+  m = merge
+  o = checkout
+  p = pull
+  s = status
+  w = whatchanged
+
+  # commit - amend the tip of the current branch rather than creating a new commit.
+  ca = commit --amend
+  # commit with a message
+  cm = commit --message
+  # checkout 
+  co = checkout
+  # create a new branch from the current working tree, and switch to it
+  cob = checkout -b
+  # cherry-pick - apply the changes introduced by some existing commits; useful for moving small chunks of code between branches.
+  cp = cherry-pick
+
+  # Fetch all remotes
+  fa = fetch --all
+  # Fetch all remotes and delete stale references associated with the remotes
+  fap = fetch --all --prune
+
+  # rebase - forward-port local commits to the updated upstream head.
+  rb = rebase
+  # rebase abort - cancel the rebasing process
+  rba = rebase --abort
+  # rebase - continue the rebasing process after resolving a conflict manually and updating the index with the resolution.
+  rbc = rebase --continue
+  # rebase - restart the rebasing process by skipping the current patch.
+  rbs = rebase --skip
+  # rebase interactive - do the rebase with prompts.
+  rbi = rebase --interactive
