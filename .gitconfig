@@ -1,5 +1,7 @@
-# Subset from https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt
+[pull]
+    rebase = true
 
+# Subset from https://raw.githubusercontent.com/GitAlias/gitalias/main/gitalias.txt
 [alias]
 # Short aliases for frequent commands.
   a = add
