@@ -4,7 +4,8 @@ set -e
 
 # --- Configuration ---
 DOTFILES_GITCONFIG="$PWD/.gitconfig"
-NPM_PACKAGE="@google/gemini-cli"
+#NPM_PACKAGE="@google/gemini-cli"
+NPM_PACKAGE="@github/copilot"
 
 # --- Styling Helpers ---
 print_header() { echo -e "\n\033[1;35m[ $1 ]\033[0m"; }
