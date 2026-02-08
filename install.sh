@@ -65,6 +65,46 @@ setup_git_config() {
     fi
 }
 
+ensure_node_installed() {
+    print_header "Checking Node.js & NPM"
+
+    if command -v node >/dev/null 2>&1 && command -v npm >/dev/null 2>&1; then
+        print_status "Node.js ($(node -v)) and NPM ($(npm -v)) already installed."
+        return 0
+    fi
+
+    print_status "Node.js/NPM not found. Attempting to install latest LTS..."
+
+    if ! command -v sudo >/dev/null 2>&1; then
+        print_warning "sudo not found. Cannot install Node.js automatically."
+        return 1
+    fi
+
+    # Detect OS to use appropriate package manager
+    if [ -f /etc/debian_version ]; then
+        if ! command -v curl >/dev/null 2>&1; then
+            print_status "Installing curl..."
+            sudo apt-get update && sudo apt-get install -y curl
+        fi
+
+        print_status "Adding NodeSource LTS repository..."
+        curl -fsSL https://deb.nodesource.com/setup_lts.x | sudo -E bash -
+        
+        print_status "Installing nodejs..."
+        sudo apt-get install -y nodejs
+    else
+        print_warning "Unsupported OS for automatic Node.js install. Please install manually."
+        return 1
+    fi
+
+    if command -v node >/dev/null 2>&1; then
+        print_status "Node.js ($(node -v)) installed successfully."
+    else
+        print_warning "Node.js installation failed."
+        return 1
+    fi
+}
+
 install_npm_global() {
     local PACKAGE="$1"
     print_header "Installing NPM Package: $PACKAGE"
@@ -120,6 +160,7 @@ install_npm_global() {
 
 print_debug_info
 setup_git_config
+ensure_node_installed
 install_npm_global "$NPM_PACKAGE"
 
 print_header "Setup Complete!"
